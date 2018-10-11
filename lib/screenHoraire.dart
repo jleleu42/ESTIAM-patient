@@ -28,13 +28,13 @@ class ScreenHoraire extends StatelessWidget {
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: const EdgeInsets.only(top: 20.0),
-      children: idDoctors.map((data) => _buildListItem(context, data)).toList(),
+      children: currentRdv.doctor.time_slots.map((data) => _buildListItem(context, data)).toList(),
     );
   }
 
-  Widget _buildListItem(BuildContext context, String id) {
+  Widget _buildListItem(BuildContext context, int id) {
     return new FutureBuilder(
-      future: Horaires.getById(id),
+      future: Horaires.getById(id.toString()),
       builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (!snapshot.hasData || snapshot.data.data == null) {
           return new Container();

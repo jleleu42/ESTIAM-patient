@@ -1,3 +1,5 @@
 library patient.globals;
 
-List<String> idDoctors;
+import 'package:patient/rdv.dart';
+
+Rdv currentRdv = new Rdv();

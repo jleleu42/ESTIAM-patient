@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient/globals.dart';
 import 'package:patient/screenDoctor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -70,6 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
               onPressed: () {
                 if(prenom != '' && nom != ''){
+
+                currentRdv.customer_first_name = prenom;
+                currentRdv.customer_last_name = nom;
                 Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ScreenDoctor()),

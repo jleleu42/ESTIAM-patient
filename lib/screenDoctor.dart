@@ -48,8 +48,7 @@ class ScreenDoctor extends StatelessWidget {
         child: ListTile(
           title: Text(doctors.first_name + ' ' + doctors.last_name),
           onTap: () {
-            idDoctors = doctors.time_slots.map((data) => data.toString()).toList();
-            print(idDoctors);
+            currentRdv.doctor = doctors;
             Navigator.push(context,MaterialPageRoute(builder: (context) => ScreenHoraire()));
           },
           //onTap: () {print(idDoctors);},

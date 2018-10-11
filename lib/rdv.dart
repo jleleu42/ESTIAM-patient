@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:patient/doctors.dart';
+import 'package:patient/horaires.dart';
 
 
 class Rdv {
-  final String appointment_date;
-  final DateTime customer_first_name;
-  final DateTime customer_last_name;
-  final DateTime doctor;
+  Horaires appointment_date;
+  String customer_first_name;
+  String customer_last_name;
+  Doctors doctor;
   final DocumentReference reference;
 
+  Rdv({this.reference});
 
   Rdv.fromMap(Map<String, dynamic> map, {this.reference})
       : assert(map['appointment_date'] != null),
