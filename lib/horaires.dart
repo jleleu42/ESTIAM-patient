@@ -9,20 +9,16 @@ class Horaires {
 
 
   Horaires.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['first_name'] != null),
-        assert(map['last_name'] != null),
-        assert(map['login'] != null),
-        assert(map['password'] != null),
-        assert(map['time_slots'] != null),
-        first_name = map['first_name'],
-        last_name = map['last_name'],
-        login = map['login'],
-        password = map['password'],
-        time_slots = map['time_slots'];
+      : assert(map['available'] != null),
+        assert(map['end'] != null),
+        assert(map['start'] != null),
+        available = map['available'],
+        end = map['end'],
+        start = map['start'];
 
   Horaires.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   @override
-  String toString() => "Record<$first_name:$last_name>";
+  String toString() => "Record<$end:$start>";
 }
