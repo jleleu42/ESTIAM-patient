@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:patient/doctors.dart';
 import 'package:patient/horaires.dart';
 
+var test = ['1','2','3'];
+
 class ScreenHoraire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,31 +29,44 @@ class ScreenHoraire extends StatelessWidget {
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: const EdgeInsets.only(top: 20.0),
-      children: snapshot.map((data) => _buildListItem(context, data)).toList(),
+      children: test.map((data) => _buildListItem(context, data)).toList(),
     );
   }
 
-  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final horaires = Horaires.fromSnapshot(data);
+  Widget _buildListItem(BuildContext context, String id) {
+    return new FutureBuilder(
+      future: Horaires.getById(id),
+      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return new Container();
+        }
 
-    return Padding(
-      key: ValueKey(horaires.id),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        if (snapshot.data.data == null) {
+          return new Container();
+        }
 
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: ListTile(
+        final horaires = Horaires.fromSnapshot(snapshot.data);
 
-          title: Text('Début : '+horaires.start.toString() + '\r\nFin : ' + horaires.end.toString()),
-          /*onTap: () => Navigator.push(
+        return Padding(
+          key: ValueKey(horaires.id),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: ListTile(
+
+              title: Text('Début : '+horaires.start.toString() + '\r\nFin : ' + horaires.end.toString()),
+              /*onTap: () => Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ScreenHoraire()),
           ) ,*/
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

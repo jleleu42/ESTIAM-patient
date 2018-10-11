@@ -47,7 +47,7 @@ class ScreenDoctor extends StatelessWidget {
           title: Text(doctors.first_name + ' ' + doctors.last_name),
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ScreenHoraire(doctors.id)),
+            MaterialPageRoute(builder: (context) => ScreenHoraire()),
           ) ,
           //onTap: () {print('');},
         ),

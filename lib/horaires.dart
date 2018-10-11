@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 
 class Horaires {
@@ -25,4 +26,8 @@ class Horaires {
 
   @override
   String toString() => "Record<$end:$start>";
+
+  static Future<DocumentSnapshot> getById (String id) async {
+    return Firestore.instance.collection('time_slots').document(id).get();
+  }
 }
