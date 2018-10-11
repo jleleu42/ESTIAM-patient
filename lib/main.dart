@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 context,
                 MaterialPageRoute(builder: (context) => ScreenDoctor()),
               );}else{
-                  return showDialog(
+                  showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(

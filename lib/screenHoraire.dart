@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/doctors.dart';
+import 'package:patient/horaires.dart';
 
 class ScreenHoraire extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class ScreenHoraire extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
 
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('appointements').snapshots(),
+      stream: Firestore.instance.collection('time_slots').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -31,10 +32,10 @@ class ScreenHoraire extends StatelessWidget {
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final doctors = Doctors.fromSnapshot(data);
+    final horaires = Horaires.fromSnapshot(data);
 
     return Padding(
-      key: ValueKey(doctors.login),
+      key: ValueKey(horaires.id),
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
 
       child: Container(
@@ -43,7 +44,8 @@ class ScreenHoraire extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: ListTile(
-          title: Text(doctors.first_name + ' ' + doctors.last_name),
+
+          title: Text('Début : '+horaires.start.toString() + '\r\nFin : ' + horaires.end.toString()),
           /*onTap: () => Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ScreenHoraire()),
