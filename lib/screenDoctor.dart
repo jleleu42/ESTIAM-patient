@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/doctors.dart';
+import 'package:patient/globals.dart';
 import 'package:patient/screenHoraire.dart';
 
 class ScreenDoctor extends StatelessWidget {
@@ -34,6 +35,7 @@ class ScreenDoctor extends StatelessWidget {
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
     final doctors = Doctors.fromSnapshot(data);
 
+
     return Padding(
       key: ValueKey(doctors.login),
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -45,11 +47,12 @@ class ScreenDoctor extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(doctors.first_name + ' ' + doctors.last_name),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ScreenHoraire()),
-          ) ,
-          //onTap: () {print('');},
+          onTap: () {
+            idDoctors = doctors.time_slots.map((data) => data.toString()).toList();
+            print(idDoctors);
+            Navigator.push(context,MaterialPageRoute(builder: (context) => ScreenHoraire()));
+          },
+          //onTap: () {print(idDoctors);},
         ),
       ),
     );

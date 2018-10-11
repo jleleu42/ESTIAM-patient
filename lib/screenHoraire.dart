@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/doctors.dart';
+import 'package:patient/globals.dart';
 import 'package:patient/horaires.dart';
-
-var test = ['1','2','3'];
 
 class ScreenHoraire extends StatelessWidget {
   @override
@@ -29,7 +28,7 @@ class ScreenHoraire extends StatelessWidget {
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: const EdgeInsets.only(top: 20.0),
-      children: test.map((data) => _buildListItem(context, data)).toList(),
+      children: idDoctors.map((data) => _buildListItem(context, data)).toList(),
     );
   }
 
@@ -37,15 +36,15 @@ class ScreenHoraire extends StatelessWidget {
     return new FutureBuilder(
       future: Horaires.getById(id),
       builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (!snapshot.hasData) {
-          return new Container();
-        }
-
-        if (snapshot.data.data == null) {
+        if (!snapshot.hasData || snapshot.data.data == null) {
           return new Container();
         }
 
         final horaires = Horaires.fromSnapshot(snapshot.data);
+
+        if (!horaires.available) {
+          return new Container();
+        }
 
         return Padding(
           key: ValueKey(horaires.id),
