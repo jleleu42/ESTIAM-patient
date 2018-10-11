@@ -1,6 +1,7 @@
 library patient.globals;
 
 import 'package:intl/intl.dart';
+import 'package:patient/horaires.dart';
 import 'package:patient/rdv.dart';
 
 Rdv currentRdv = new Rdv();

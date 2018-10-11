@@ -4,6 +4,7 @@ import 'package:patient/doctors.dart';
 import 'package:patient/globals.dart';
 import 'package:patient/horaires.dart';
 import 'package:intl/intl.dart';
+import 'package:patient/screenRecap.dart';
 
 class ScreenHoraire extends StatelessWidget {
   @override
@@ -59,10 +60,13 @@ class ScreenHoraire extends StatelessWidget {
             child: ListTile(
 
               title: Text('Début : '+ formater.format(horaires.start) + '\r\nFin : ' + formater.format(horaires.end)),
-              /*onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ScreenHoraire()),
-          ) ,*/
+              onTap: () {
+                currentRdv.appointment_date = horaires;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ScreenRecap()),
+                );
+              },
             ),
           ),
         );

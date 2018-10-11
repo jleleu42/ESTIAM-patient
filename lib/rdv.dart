@@ -35,5 +35,7 @@ class Rdv {
       'customer_first_name': customer_first_name,
       'customer_last_name': customer_last_name
     });
+
+    Firestore.instance.collection('time_slots').document(appointment_date.id).updateData({'available':false});
   }
 }
