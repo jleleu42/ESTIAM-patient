@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "159077951413",
+    "firebase_url": "https://find-a-doc-243da.firebaseio.com",
+    "project_id": "find-a-doc-243da",
+    "storage_bucket": "find-a-doc-243da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159077951413:android:5af73cf50e1ec14e",
+        "android_client_info": {
+          "package_name": "com.example.patient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159077951413-6ehseke7q7ptgl97k00csicp0a7otd38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOG_veeC1SM65va5uWbMA-7WUWAPYWv8Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
