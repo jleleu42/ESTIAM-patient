@@ -27,4 +27,13 @@ class Rdv {
 
   @override
   String toString() => "Record<$customer_first_name:$customer_last_name>";
+
+  void persist() {
+    Firestore.instance.collection('appointments').document().setData({
+      'appointment_date': appointment_date.id,
+      'doctor': doctor.id,
+      'customer_first_name': customer_first_name,
+      'customer_last_name': customer_last_name
+    });
+  }
 }
